@@ -3,6 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handmade Wild | Doğal Ürünler & Profesyonel Ekipman Mağazası</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --ana-renk: #111827;
+            --vurgu: #D97706;
+            --vurgu-acik: #FEF3C7;
+            --arka-plan: #F9FAFB;
+            --beyaz: #FFFFFF;
+            --metin: #1F2937;
+            --gri: #6B7280;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--arka-plan); color: var(--metin); padding-bottom: 70px; }
+
+        /* Sade ve Hızlı Üst Bar */
+        header { background: var(--beyaz); padding: 0.9rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.06); gap: 1rem; }
+        .marka { font-size: 1.4rem; font-weight: 800; color: var(--ana-renk); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
+        .marka span { color: var(--vurgu); }
+        
+        .ust-arama { flex: 1; max-width: 480px; position: relative; }
+        .ust-arama input { width: 100%; padding: 0.65rem 1.2rem; border-radius: 30px; border: 1.5px solid #E5E7EB; background: #F3F4F6; font-size: 0.95rem; outline: none; transition: 0.2s; }
+        .ust-arama input:focus { background: white; border-color: var(--vurgu); }
+
+        .ust-aksiyon { display: flex; align-items: center; gap: 0.8rem; }
+        .yt-link { background: #FEE2E2; color: #DC2626; padding: 0.55rem 0.9rem; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 0.85rem; white-space: nowrap; }
+        .sepet-btn { background: var(--ana-renk); color: white; border: none; padding: 0.65rem 1.2rem; border-radius: 25px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
+        .sepet-btn span { background: var(--vurgu); color: white; padding: 0.1rem 0.5rem; border-radius: 12px; font-size: 0.8rem; }
+
+        /* Zengin Görselli Karşılama Afişi */
+        .banner { max-width: 1240px; margin: 1.2rem auto; padding: 0 5%; }
+        .banner-kutu {
+            background: linear-gradient(110deg, rgba(17, 24, 39, 0.88) 35%, rgba(17, 24, 39, 0.25)), url('https://unsplash.com') center/cover;
+            border-radius: 22px; padding: 3.2rem 2.5rem; color: white; display: flex; flex-direction: column; justify-content: center; min-height: 280px; box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+        .banner-kutu h1 { font-size: 2.2rem; font-weight: 800; max-width: 520px; line-height: 1.2; margin-bottom: 0.7rem; }
+        .banner-kutu p { max-width: 460px; color: #E5E7EB; font-size: 1rem; margin-bottom: 1.3rem; }
+        .banner-etiketler { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        .banner-etiketler span { background: rgba(255,255,255,0.18); backdrop-filter: blur(6px); padding: 0.35rem 0.9rem; border-radius: 20px; font-size: 0.82rem; font-weight: 600; }
+
+        /* En Rahat Kullanımlı Resimli Kategori Menüsü */
+        .kategori-bolumu { max-width: 1240px; margin: 1.8rem auto 1rem; padding: 0 5%; }
+        .bolum-ust { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .bolum-ust h2 { font-size: 1.35rem; font-weight: 800; color: var(--ana-renk); }
+        
+        .resimli-menu { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.8rem; scrollbar-width: none; }
+        .resimli-menu::-webkit-scrollbar { display: none; }
+        .kat-kart { min-width: 150px; background: white; border-radius: 16px; padding: 0.6rem; text-align: center; cursor: pointer; border: 2px solid transparent; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: 0.25s; flex-shrink: 0; }
+        .kat-kart img { width: 100%; height: 85px; object-fit: cover; border-radius: 12px; margin-bottom: 0.5rem; }
+        .kat-kart h4 { font-size: 0.9rem; font-weight: 700; color: var(--metin); }
+        .kat-kart.aktif, .kat-kart:hover { border-color: var(--vurgu); background: var(--vurgu-acik); transform: translateY(-3px); }
+
+        /* Modern Ürün Izgarası */
+        .urun-alani { max-width: 1240px; margin: 1rem auto; padding: 0 5%; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+        .urun-karti { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; border: 1px solid #F3F4F6; }
+        .urun-karti:hover { transform: translateY(-5px); box-shadow: 0 14px 28px rgba(0,0,0,0.1); }
+        .resim-cerceve { position: relative; height: 210px; overflow: hidden; cursor: pointer; background: #F3F4F6; }
+        .resim-cerceve img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .urun-karti:hover .resim-cerceve img { transform: scale(1.06); }
+        .stok-etiket { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.95); padding: 0.25rem 0.65rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .var { color: #059669; }
+        .yok { color: #DC2626; }
+
+        .kart-govde { padding: 1.1rem; }
+        .kat-isim { font-size: 0.75rem; color: var(--vurgu); font-weight: 700; text-transform: uppercase; }
+        .urun-ad { font-size: 1.05rem; font-weight: 700; margin: 0.25rem 0 0.5rem; color: var(--ana-renk); cursor: pointer; }
+        .fiyat { font-size: 1.35rem; font-weight: 800; color: var(--ana-renk); }
+
+        .kart-alt { padding: 0 1.1rem 1.1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .btn-sepet { background: var(--ana-renk); color: white; border: none; padding: 0.65rem; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.85rem; }
+        .btn-sepet:hover { background: var(--vurgu); }
+        .btn-sepet:disabled { background: #9CA3AF; cursor: not-allowed; }
+        .btn-hemen { background: var(--vurgu-acik); color: #B45309; border: 1.5px solid var(--vurgu); padding: 0.65rem; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.85rem; }
+        .btn-hemen:hover { background: var(--vurgu); color: white; }
+
+        /* Alt Sosyal Medya Alanı */
+        .sosyal-alan { max-width: 1240px; margin: 3rem auto 1rem; padding: 0 5%; }
+        .sosyal-kutu { background: var(--ana-renk); color: white; border-radius: 20px; padding: 2.5rem; text-align: center; }
+        .sosyal-butonlar { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.2rem; }
+        .s-btn { padding: 0.75rem 1.5rem; border-radius: 30px; color: white; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+
+        /* Mobil Alt Sabit Menü (En Rahat Kullanım İçin) */
+        .mobil-alt-menu { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; border-top: 1px solid #E5E7EB; justify-content: space-around; padding: 0.6rem 0; z-index: 150; }
+        .mobil-alt-menu button, .mobil-alt-menu a { background: none; border: none; color: var(--metin); text-decoration: none; font-size: 0.75rem; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.65); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
+        .modal-kutu { background: white; padding: 1.8rem; border-radius: 20px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
+        .input-kutu { width: 100%; padding: 0.7rem; border: 1.5px solid #E5E7EB; border-radius: 10px; margin-bottom: 0.7rem; font-size: 0.95rem; }
+        .odeme-secenek label { display: flex; align-items: center; gap: 0.5rem; padding: 0.65rem; border: 1.5px solid #E5E7EB; border-radius: 10px; margin-bottom: 0.5rem; font-weight: 600; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .yt-link { display: none; }
+            .banner-kutu h1 { font-size: 1.65rem; }
+            .mobil-alt-menu { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="marka">🐝 Handmade<span>Wild</span></a>
+    <div class="ust-arama">
+        <input type="text" id="arama" onkeyup="urunAra()" placeholder="Ürün veya kategori ara...">
+    </div>
+    <div class="ust-aksiyon">
+        <a href="https://youtube.com" target="_blank" class="yt-link">▶️ YouTube</a>
+        <button class="sepet-btn" onclick="sepetiAc()">🛒 Sepet <span id="sayac">0</span></button>
+    </div>
+</header>
+
+<section class="banner">
+    <div class="banner-kutu">
+        <h1>Doğal Ürünler & Profesyonel Ekipmanlar</h1>
+        <p>Canlı stok takibi, tek tıkla güvenli kart ödemesi, Havale/EFT ve kapıda ödeme kolaylığıyla doğrudan kapınızda.</p>
+        <div class="banner-etiketler">
+            <span>✓ Canlı Stok</span>
+            <span>✓ Taksitli Kart Ödemesi</span>
+            <span>✓ Kapıda Ödeme</span>
+        </div>
+    </div>
+</section>
+
+<!-- EN RAHAT KULLANIMLI GÖRSELLİ KATEGORİ MENÜSÜ -->
+<section class="kategori-bolumu">
+    <div class="bolum-ust">
+        <h2>Kategoriler</h2>
+    </div>
+    <div class="resimli-menu">
+        <div class="kat-kart aktif" onclick="kategoriSec('hepsi', this)">
+            <img src="https://unsplash.com" alt="Tümü">
+            <h4>Tüm Ürünler</h4>
+        </div>
+        <div class="kat-kart" onclick="kategoriSec('kovan-petek', this)">
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hande Wild | Kovan, Arı Ürünleri & Tüm Arıcılık Malzemeleri</title>
     <style>
         :root {
