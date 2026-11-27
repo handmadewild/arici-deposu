@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hande Wild | Kovan, Arı Ürünleri & Tüm Arıcılık Malzemeleri</title>
+    <style>
+        :root {
+            --bal-sarisi: #F59E0B;
+            --koyu-kehribar: #B45309;
+            --orman-yesili: #1E3A2F;
+            --krem-arka: #FFFBEB;
+            --koyu-metin: #1F2937;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--krem-arka); color: var(--koyu-metin); line-height: 1.6; }
+
+        header { background-color: var(--orman-yesili); color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 1rem; }
+        .logo { font-size: 1.6rem; font-weight: bold; color: var(--bal-sarisi); }
+        nav { display: flex; align-items: center; gap: 1.2rem; }
+        nav a { color: white; text-decoration: none; font-weight: 500; }
+        .sepet-btn { background: var(--bal-sarisi); color: var(--orman-yesili); padding: 0.5rem 1.1rem; border-radius: 20px; font-weight: bold; cursor: pointer; border: none; }
+
+        .hero { background: linear-gradient(rgba(30, 58, 47, 0.85), rgba(30, 58, 47, 0.85)), url('https://unsplash.com') center/cover; color: white; text-align: center; padding: 3rem 1rem; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 0.6rem; color: var(--bal-sarisi); }
+        .arama-kutusu { max-width: 500px; margin: 1.2rem auto 0; }
+        .arama-kutusu input { width: 100%; padding: 0.8rem 1rem; border: none; border-radius: 8px; font-size: 1rem; }
+
+        .filtreler { text-align: center; margin: 1.8rem 5% 1.2rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
+        .filtre-btn { background: white; border: 2px solid var(--bal-sarisi); padding: 0.5rem 1rem; border-radius: 25px; cursor: pointer; font-weight: bold; color: var(--koyu-metin); }
+        .filtre-btn.aktif, .filtre-btn:hover { background: var(--bal-sarisi); color: white; }
+
+        .urunler-container { max-width: 1200px; margin: 0 auto; padding: 0 5% 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+        .urun-karti { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.08); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #FDE68A; }
+        .urun-bilgi { padding: 1.2rem; }
+        .kategori-etiket { font-size: 0.72rem; text-transform: uppercase; background: #FEF3C7; color: var(--koyu-kehribar); padding: 0.2rem 0.6rem; border-radius: 4px; font-weight: bold; }
+        .urun-baslik { font-size: 1.15rem; margin: 0.5rem 0; color: var(--orman-yesili); }
+        .stok-durumu { font-size: 0.85rem; margin-bottom: 0.6rem; font-weight: 600; }
+        .stok-var { color: #059669; }
+        .stok-yok { color: #DC2626; }
+        .fiyat { font-size: 1.3rem; font-weight: bold; color: var(--koyu-kehribar); }
+        .ekle-btn { width: 100%; padding: 0.7rem; background: var(--orman-yesili); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 0.4rem; }
+        .ekle-btn:hover { background: var(--koyu-kehribar); }
+        .ekle-btn:disabled { background: #9CA3AF; cursor: not-allowed; }
+        .kart-ode-btn { width: 100%; padding: 0.6rem; background: #2563EB; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 0.4rem; font-size: 0.9rem; }
+
+        .sosyal-bant { background: #FEF3C7; text-align: center; padding: 2.5rem 1rem; border-top: 2px solid var(--bal-sarisi); }
+        .sosyal-linkler { margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .sosyal-btn { text-decoration: none; padding: 0.6rem 1.4rem; border-radius: 8px; color: white; font-weight: bold; }
+        .insta { background: #E1306C; }
+        .yt { background: #FF0000; }
+        .wp { background: #25D366; }
+
+        #sepet-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.65); z-index: 200; justify-content: center; align-items: center; padding: 1rem; }
+        .modal-icerik { background: white; padding: 1.8rem; border-radius: 12px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; }
+        .sepet-item { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 0.5rem 0; font-size: 0.95rem; }
+        .odeme-secenekleri { margin: 1rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+        .odeme-secenekleri label { border: 1px solid #D1D5DB; padding: 0.65rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 0.6rem; font-weight: 500; }
+        .odeme-detay { background: #F3F4F6; padding: 0.9rem; border-radius: 8px; font-size: 0.88rem; margin-bottom: 1rem; border-left: 4px solid var(--bal-sarisi); }
+        .adres-alani { width: 100%; padding: 0.6rem; border: 1px solid #D1D5DB; border-radius: 6px; margin-bottom: 0.8rem; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">🐝 Hande Wild</div>
+    <nav>
+        <a href="#urunler">Tüm Ürünler</a>
+        <a href="#sosyal">Sosyal Medya</a>
+        <button class="sepet-btn" onclick="sepetiAc()">🛒 Sepet (<span id="sepet-sayac">0</span>)</button>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Kovan, Arı Ürünleri & Tüm Arıcılık Malzemeleri</h1>
+    <p>Canlı stok takibi, güvenli sanal POS kart ödemesi, Havale/EFT ve kapıda ödeme seçenekleriyle hizmetinizdeyiz.</p>
+    <div class="arama-kutusu">
+        <input type="text" id="arama-input" onkeyup="urunAra()" placeholder="Ürün ara (Kovan, Propolis, Körük, Petek, Maske...)">
+    </div>
+</section>
+
+<div class="filtreler" id="urunler">
+    <button class="filtre-btn aktif" onclick="filtrele('hepsi', this)">Tümü</button>
+    <button class="filtre-btn" onclick="filtrele('kovan-petek', this)">Kovan & Temel Petek</button>
+    <button class="filtre-btn" onclick="filtrele('ari-urunleri', this)">Bal, Propolis & Arı Ürünleri</button>
+    <button class="filtre-btn" onclick="filtrele('ekipman-giysi', this)">Ekipman & Arıcı Giysileri</button>
+    <button class="filtre-btn" onclick="filtrele('besleme-bakim', this)">Arı Besleme & Bakım</button>
+</div>
+
+<main class="urunler-container" id="urun-listesi"></main>
+
+<section class="sosyal-bant" id="sosyal">
+    <h2>Sosyal Medya & Canlı Destek</h2>
+    <p>Instagram mağazamızdan ve YouTube kanalımızdan arılıktaki çalışmalarımızı takip edin.</p>
+    <div class="sosyal-linkler">
+        <a href="https://instagram.com" target="_blank" class="sosyal-btn insta">📸 Instagram</a>
+        <a href="https://youtube.com" target="_blank" class="sosyal-btn yt">▶️ YouTube</a>
+        <a href="https://wa.me" target="_blank" class="sosyal-btn wp">💬 WhatsApp Hattı</a>
+    </div>
+</section>
+
+<div id="sepet-modal">
+    <div class="modal-icerik">
+        <h3>Sipariş & Ödeme Ekranı</h3>
+        <div id="sepet-icerik" style="margin: 0.8rem 0;"></div>
+        <p style="font-size: 1.1rem; margin-bottom: 0.8rem;"><strong>Genel Toplam: <span id="toplam-tutar">0</span> TL</strong></p>
+
+        <input type="text" id="musteri-ad" class="adres-alani" placeholder="Adınız Soyadınız">
+        <textarea id="musteri-adres" class="adres-alani" rows="2" placeholder="Teslimat Adresiniz (İl / İlçe / Açık Adres)"></textarea>
+
+        <div class="odeme-secenekleri">
+            <strong>Ödeme Yöntemi Seçin:</strong>
+            <label><input type="radio" name="odeme" value="kart" onchange="odemeDegisti(this.value)" checked> 💳 Kredi / Banka Kartı (Shopier / iyzico / PayTR)</label>
+            <label><input type="radio" name="odeme" value="havale" onchange="odemeDegisti(this.value)"> 🏦 Havale / EFT (Anında İndirimli)</label>
+            <label><input type="radio" name="odeme" value="kapida" onchange="odemeDegisti(this.value)"> 🚚 Kapıda Ödeme (Nakit veya Kart)</label>
+        </div>
+
+        <div id="odeme-bilgi-alani" class="odeme-detay">
+            <strong>Güvenli Kart Ödemesi:</strong><br>
+            Onayla butonuna bastığınızda 3D Secure korumalı ödeme ekranına (Shopier / PayTR / iyzico) yönlendirileceksiniz. Taksit imkanı mevcuttur.
+        </div>
+
+        <button class="ekle-btn" style="background: #25D366; font-size: 1rem;" onclick="siparisiTamamla()">Ödemeye Geç / Siparişi Onayla</button>
+        <button class="ekle-btn" style="margin-top: 0.5rem; background: #6B7280;" onclick="sepetiKapat()">Alışverişe Dön</button>
+    </div>
+</div>
+
+<script>
+    const urunler = [
+        { id: 1, ad: "Langstroth Ahşap Arı Kovanı (10 Çıtalı)", kategori: "kovan-petek", katAd: "Kovan & Petek", fiyat: 1850, stok: 12, odemeLinki: "https://shopier.com" },
+        { id: 2, ad: "Saf Balmumu Temel Petek (1 Kg)", kategori: "kovan-petek", katAd: "Kovan & Petek", fiyat: 420, stok: 35, odemeLinki: "https://shopier.com" },
+        { id: 3, ad: "Ham Çiçek Balı (850 gr)", kategori: "ari-urunleri", katAd: "Arı Ürünleri", fiyat: 650, stok: 14, odemeLinki: "https://shopier.com" },
+        { id: 4, ad: "Saf Propolis Özütü (30 ml)", kategori: "ari-urunleri", katAd: "Arı Ürünleri", fiyat: 320, stok: 8, odemeLinki: "https://shopier.com" },
+        { id: 5, ad: "Paslanmaz Çelik Körük (Büyük Boy)", kategori: "ekipman-giysi", katAd: "Ekipman & Giysi", fiyat: 450, stok: 9, odemeLinki: "https://shopier.com" },
+        { id: 6, ad: "Astronot Tipi Tam Korumalı Arıcı Tulumu", kategori: "ekipman-giysi", katAd: "Ekipman & Giysi", fiyat: 950, stok: 6, odemeLinki: "https://shopier.com" },
 
