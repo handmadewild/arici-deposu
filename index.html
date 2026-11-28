@@ -5,39 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arıcı Deposu | Arıcılık Malzemeleri ve Ekipmanları</title>
 <style>
-:root{--yesil:#0B2218;--orman:#143627;--altin:#D97706;--sari:#F59E0B;--krem:#FAF8F5;--koyu:#1C1917;--gri:#57534E}
+:root{--y:#0B2218;--o:#143627;--a:#D97706;--s:#F59E0B;--k:#FAF8F5;--m:#1C1917;--g:#57534E}
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif}
-body{background:var(--krem);color:var(--koyu);line-height:1.5}
-.serit{background:linear-gradient(90deg,#78350F,var(--altin),#78350F);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:700}
-header{background:var(--yesil);color:#fff;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;border-bottom:2px solid var(--altin);gap:12px;flex-wrap:wrap}
-.logo{text-decoration:none;display:flex;align-items:center;gap:10px;color:var(--sari);font-size:22px;font-weight:800}
-.arama{flex:1;max-width:380px;background:rgba(255,255,255,.12);border:1px solid var(--sari);border-radius:25px;padding:4px 12px}
+body{background:var(--k);color:var(--m);line-height:1.5}
+.serit{background:linear-gradient(90deg,#78350F,var(--a),#78350F);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:700}
+header{background:var(--y);color:#fff;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;border-bottom:2px solid var(--a);gap:12px;flex-wrap:wrap}
+.logo{text-decoration:none;display:flex;align-items:center;gap:10px;color:var(--s);font-size:22px;font-weight:800}
+.arama{flex:1;max-width:380px;background:rgba(255,255,255,.12);border:1px solid var(--s);border-radius:25px;padding:4px 12px}
 .arama input{width:100%;background:none;border:none;color:#fff;padding:6px;outline:none;font-size:14px}
 .butonlar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff;text-decoration:none;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700}
 .yt{background:#DC2626;color:#fff;text-decoration:none;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700}
-.yonetim-btn{background:rgba(255,255,255,.15);color:#FDE68A;border:1px solid var(--sari);padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer}
-.sepet-btn{background:var(--sari);color:#111;border:none;padding:8px 16px;border-radius:20px;font-weight:800;cursor:pointer;font-size:13px}
-.hero{background:linear-gradient(135deg,var(--yesil),var(--orman));color:#fff;padding:36px 5%;border-bottom:3px solid var(--altin)}
-.hero h1{font-size:26px;margin-bottom:8px}.hero h1 span{color:var(--sari)}.hero p{color:#E5E7EB;max-width:600px}
+.yonetim-btn{background:rgba(255,255,255,.15);color:#FDE68A;border:1px solid var(--s);padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer}
+.sepet-btn{background:var(--s);color:#111;border:none;padding:8px 16px;border-radius:20px;font-weight:800;cursor:pointer;font-size:13px}
+.hero{background:linear-gradient(135deg,var(--y),var(--o));color:#fff;padding:36px 5%;border-bottom:3px solid var(--a)}
+.hero h1{font-size:26px;margin-bottom:8px}.hero h1 span{color:var(--s)}.hero p{color:#E5E7EB;max-width:600px}
 .kategoriler{max-width:1200px;margin:24px auto 12px;padding:0 5%;display:flex;gap:10px;overflow-x:auto}
 .kat{background:#fff;border:1.5px solid #E7E5E4;padding:10px 18px;border-radius:25px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
-.kat.aktif,.kat:hover{background:var(--yesil);color:var(--sari);border-color:var(--yesil)}
+.kat.aktif,.kat:hover{background:var(--y);color:var(--s);border-color:var(--y)}
 .vitrin{max-width:1200px;margin:16px auto 48px;padding:0 5%;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 .kart{background:#fff;border-radius:16px;border:1px solid #E7E5E4;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(0,0,0,.05)}
 .gorsel{height:170px;background:#F3F4F6;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;overflow:hidden}
 .gorsel img{width:100%;height:100%;object-fit:cover}
-.etiket{position:absolute;top:10px;left:10px;background:var(--yesil);color:var(--sari);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700}
+.etiket{position:absolute;top:10px;left:10px;background:var(--y);color:var(--s);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700}
 .stok-etiket{position:absolute;bottom:10px;right:10px;background:#fff;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .icerik{padding:16px}
-.icerik h3{font-size:17px;color:var(--yesil);margin-bottom:6px}
-.icerik p{font-size:13px;color:var(--gri);margin-bottom:12px}
+.icerik h3{font-size:17px;color:var(--y);margin-bottom:6px}
+.icerik p{font-size:13px;color:var(--g);margin-bottom:12px}
 .fiyat{font-size:20px;font-weight:800;color:#B45309;background:#FFFBEB;padding:6px 12px;border-radius:8px;border:1px solid #FDE68A;display:inline-block}
 .alt-btn{padding:0 16px 16px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.ekle{background:var(--yesil);color:#fff;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer}
+.ekle{background:var(--y);color:#fff;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer}
 .ekle:disabled{background:#9CA3AF;cursor:not-allowed}
-.sor{border:1.5px solid var(--yesil);color:var(--yesil);text-decoration:none;padding:10px;border-radius:10px;font-weight:700;text-align:center;font-size:13px}
-footer{background:var(--yesil);color:#fff;text-align:center;padding:36px 5%;border-top:3px solid var(--altin)}
+.sor{border:1.5px solid var(--y);color:var(--y);text-decoration:none;padding:10px;border-radius:10px;font-weight:700;text-align:center;font-size:13px}
+footer{background:var(--y);color:#fff;text-align:center;padding:36px 5%;border-top:3px solid var(--a)}
 .sosyal{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:16px 0}
 .sosyal a{color:#fff;text-decoration:none;padding:10px 20px;border-radius:25px;font-weight:700;font-size:14px}
 .modal,.admin-modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;z-index:200}
@@ -49,14 +49,14 @@ footer{background:var(--yesil);color:#fff;text-align:center;padding:36px 5%;bord
 .wp-btn{background:#16A34A;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:800;width:100%;margin-bottom:8px;cursor:pointer}
 .ig-btn{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff;border:none;padding:12px;border-radius:10px;font-weight:800;width:100%;cursor:pointer}
 .admin-kutu{background:#fff;width:100%;max-width:850px;max-height:90vh;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
-.admin-ust{background:var(--yesil);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.admin-ust{background:var(--y);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
 .admin-sekmeler{display:flex;background:#F3F4F6;border-bottom:1px solid #E5E7EB}
 .admin-sekme{flex:1;padding:12px;border:none;background:none;font-weight:700;cursor:pointer}
-.admin-sekme.aktif{background:#fff;color:var(--yesil);border-bottom:3px solid var(--altin)}
+.admin-sekme.aktif{background:#fff;color:var(--y);border-bottom:3px solid var(--a)}
 .admin-govde{padding:20px;overflow-y:auto;flex:1}
 .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:16px}
 .form-grid input,.form-grid select{padding:10px;border:1px solid #D1D5DB;border-radius:8px;font-size:14px}
-.kaydet-btn{background:var(--yesil);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer}
+.kaydet-btn{background:var(--y);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer}
 table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
 th,td{border-bottom:1px solid #E5E7EB;padding:8px;text-align:left}
 .sil-btn{background:#DC2626;color:#fff;border:none;padding:4px 8px;border-radius:6px;cursor:pointer;font-size:12px}
@@ -87,7 +87,7 @@ th,td{border-bottom:1px solid #E5E7EB;padding:8px;text-align:left}
 </div>
 <div class="vitrin" id="vitrin"></div>
 <footer>
-  <h2 style="color:var(--sari)">Sosyal Medyada Arıcı Deposu</h2>
+  <h2 style="color:var(--s)">Sosyal Medyada Arıcı Deposu</h2>
   <div class="sosyal">
     <a id="altIg" href="https://instagram.com" target="_blank" style="background:#dc2743">📸 Instagram Mağazamız</a>
     <a id="altYt" href="https://youtube.com" target="_blank" style="background:#DC2626">▶️ YouTube Kanalımız</a>
@@ -117,14 +117,12 @@ th,td{border-bottom:1px solid #E5E7EB;padding:8px;text-align:left}
       <h3>⚙️ Arıcı Deposu Yönetim Paneli</h3>
       <button onclick="document.getElementById('adminModal').classList.remove('acik')" style="background:none;border:none;color:#fff;font-size:24px;cursor:pointer">×</button>
     </div>
-    <div class="admin-sekmeler">
-      <button class="admin-sekme aktif" onclick="sekmeAc('urunSekme',this)">📦 Ürün & Stok</button>
-      <button class="admin-sekme" onclick="sekmeAc('muhasebeSekme',this)">💰 Muhasebe</button>
-      <button class="admin-sekme" onclick="sekmeAc('ayarSekme',this)">🔗 Ayarlar</button>
+    <div id="sifreEkrani" style="padding:30px;text-align:center">
+      <h4 style="margin-bottom:12px">Yönetici Girişi</h4>
+      <input type="password" id="girisSifre" placeholder="Şifre (Varsayılan: 1234)" style="padding:10px;border:1px solid #ccc;border-radius:8px;margin-right:8px">
+      <button class="kaydet-btn" onclick="sifreKontrol()">Giriş Yap</button>
     </div>
-    <div class="admin-govde">
-      <div id="urunSekme">
-        <div class="form-grid">
-          <input type="text" id="uAd" placeholder="Ürün Adı">
-          <select id="uKat">
-            <option value="Kovan & Çıta">Kovan & Çıta</option>
+    <div id="panelIcerik" style="display:none;flex-direction:column;flex:1;overflow:hidden">
+      <div class="admin-sekmeler">
+        <button class="admin-sekme aktif" onclick="sekmeAc('urunSekme',this)">📦 Ürün & Stok</button>
+        <button class="admin-sekme" onclick="sekmeAc('muhasebeSekme',this)">💰 Muhasebe</button>
