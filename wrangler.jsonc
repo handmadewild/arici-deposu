@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arıcı Deposu | Kovan, Bal ve Tüm Arıcılık Malzemeleri</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --koyu-yesil: #0B2218;
+            --orman: #143627;
+            --altin: #D97706;
+            --parlak-altin: #F59E0B;
+            --krem: #FAF8F5;
+            --metin: #1C1917;
+            --gri: #57534E;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--krem); color: var(--metin); line-height: 1.6; }
+
+        .ust-serit { background: linear-gradient(90deg, #78350F, #D97706, #78350F); color: white; text-align: center; padding: 0.55rem 1rem; font-size: 0.85rem; font-weight: 700; }
+
+        header { background: var(--koyu-yesil); color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--altin); gap: 1rem; flex-wrap: wrap; }
+        .marka { text-decoration: none; display: flex; align-items: center; gap: 0.7rem; }
+        .marka-ikon { font-size: 2rem; background: rgba(245, 158, 11, 0.15); border: 1px solid var(--parlak-altin); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+        .marka-yazi { font-size: 1.55rem; font-weight: 800; color: var(--parlak-altin); letter-spacing: 0.5px; line-height: 1.1; }
+        .marka-alt { font-size: 0.72rem; color: #A7F3D0; letter-spacing: 1.5px; text-transform: uppercase; }
+
+        .arama-alani { flex: 1; max-width: 420px; display: flex; background: rgba(255,255,255,0.12); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 30px; padding: 0.25rem 0.4rem; }
+        .arama-alani input { flex: 1; background: transparent; border: none; color: white; padding: 0.55rem 1rem; outline: none; font-size: 0.95rem; }
+        .arama-alani input::placeholder { color: #D1D5DB; }
+
+        .nav-butonlar { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+        .yonetim-btn { background: rgba(255,255,255,0.12); color: #FDE68A; border: 1px solid #F59E0B; padding: 0.55rem 1rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+        .yonetim-btn:hover { background: var(--altin); color: white; }
+        .yt-btn { background: #DC2626; color: white; text-decoration: none; padding: 0.55rem 1rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; }
+        .sepet-btn { background: linear-gradient(135deg, #F59E0B, #B45309); color: white; border: none; padding: 0.65rem 1.3rem; border-radius: 25px; font-weight: 800; cursor: pointer; font-size: 0.92rem; }
+
+        .hero {
+            background: linear-gradient(to right, rgba(11, 34, 24, 0.92) 35%, rgba(11, 34, 24, 0.45)), url('https://unsplash.com') center/cover no-repeat;
+            padding: 4rem 5%; color: white; border-bottom: 3px solid var(--altin);
+        }
+        .hero-rozet { display: inline-block; background: rgba(245, 158, 11, 0.2); border: 1px solid var(--parlak-altin); color: var(--parlak-altin); padding: 0.35rem 1rem; border-radius: 30px; font-size: 0.82rem; font-weight: 700; margin-bottom: 1rem; }
+        .hero h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: white; max-width: 720px; }
+        .hero h1 span { color: var(--parlak-altin); }
+        .hero p { font-size: 1.05rem; color: #E5E7EB; max-width: 580px; margin-bottom: 1.8rem; }
+        .hero-istatistik { display: flex; gap: 2rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.5rem; }
+        .stat h3 { font-size: 1.5rem; color: var(--parlak-altin); }
+        .stat p { font-size: 0.85rem; color: #A7F3D0; margin: 0; }
+
+        .kat-bolum { max-width: 1320px; margin: 2.2rem auto 1rem; padding: 0 5%; }
+        .bolum-baslik { margin-bottom: 1.2rem; }
+        .bolum-baslik h2 { font-size: 1.75rem; font-weight: 800; color: var(--koyu-yesil); }
+        .bolum-baslik p { color: var(--gri); font-size: 0.95rem; }
+
+        .kat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 1rem; }
+        .kat-kart { position: relative; height: 120px; border-radius: 16px; overflow: hidden; cursor: pointer; border: 3px solid transparent; box-shadow: 0 6px 15px rgba(0,0,0,0.08); transition: 0.25s; }
+        .kat-kart img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .kat-kart::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11, 34, 24, 0.92), rgba(11, 34, 24, 0.2)); }
+        .kat-kart span { position: absolute; bottom: 10px; left: 12px; right: 12px; color: white; font-weight: 700; font-size: 0.92rem; z-index: 2; }
+        .kat-kart:hover img { transform: scale(1.08); }
+        .kat-kart.aktif { border-color: var(--parlak-altin); transform: translateY(-3px); }
+
+        .urun-grid { max-width: 1320px; margin: 1.5rem auto 4rem; padding: 0 5%; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; }
+        .urun-karti { background: white; border-radius: 18px; overflow: hidden; border: 1px solid #E7E5E4; box-shadow: 0 8px 24px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+        .urun-karti:hover { transform: translateY(-6px); border-color: var(--parlak-altin); box-shadow: 0 16px 32px rgba(11, 34, 24, 0.14); }
+        
+        .resim-alani { position: relative; height: 220px; overflow: hidden; background: #E5E7EB; }
+        .resim-alani img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .urun-karti:hover .resim-alani img { transform: scale(1.07); }
+        .kat-rozet { position: absolute; top: 12px; left: 12px; background: rgba(11, 34, 24, 0.9); color: var(--parlak-altin); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+        .stok-rozet { position: absolute; bottom: 12px; right: 12px; background: white; padding: 0.25rem 0.7rem; border-radius: 8px; font-size: 0.78rem; font-weight: 800; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+        .stok-var { color: #059669; }
+        .stok-yok { color: #DC2626; }
+
+        .kart-icerik { padding: 1.25rem; }
+        .urun-baslik { font-size: 1.12rem; font-weight: 800; color: var(--koyu-yesil); margin-bottom: 0.4rem; }
+        .urun-ozet { font-size: 0.88rem; color: var(--gri); margin-bottom: 1rem; }
+        
+        .fiyat-kutu { background: #FFFBEB; border: 1px solid #FDE68A; padding: 0.65rem 0.9rem; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .fiyat-deger { font-size: 1.35rem; font-weight: 800; color: #B45309; }
+        .fiyat-beklemede { font-size: 0.88rem; font-weight: 700; color: #92400E; }
+
+        .kart-butonlar { padding: 0 1.25rem 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+        .btn-sepet { background: var(--koyu-yesil); color: white; border: none; padding: 0.8rem; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+        .btn-sepet:hover { background: var(--altin); }
+        .btn-sepet:disabled { background: #9CA3AF; cursor: not-allowed; }
+        .btn-kart { background: white; color: var(--koyu-yesil); border: 1.5px solid var(--koyu-yesil); padding: 0.8rem; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+        .btn-kart:hover { background: var(--koyu-yesil); color: white; }
+
+        .alt-vitrin { background: linear-gradient(135deg, var(--koyu-yesil), var(--orman)); color: white; padding: 3.5rem 5%; text-align: center; border-top: 3px solid var(--altin); }
+        .alt-vitrin h2 { font-size: 2rem; font-weight: 800; color: var(--parlak-altin); margin-bottom: 0.8rem; }
+        .sosyal-grup { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .sosyal-link { padding: 0.9rem 1.8rem; border-radius: 30px; color: white; text-decoration: none; font-weight: 700; font-size: 0.98rem; }
+
+        footer { background: #06140E; color: #9CA3AF; text-align: center; padding: 1.8rem 5%; font-size: 0.88rem; }
+
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 250; justify-content: center; align-items: center; padding: 1rem; }
+        .modal-kutu { background: white; padding: 2rem; border-radius: 20px; width: 100%; max-width: 650px; max-height: 90vh; overflow-y: auto; }
+        .yonetim-satir { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0.6rem; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid #eee; font-size: 0.92rem; }
+        .yonetim-satir input { width: 100%; padding: 0.5rem; border: 1.5px solid #D1D5DB; border-radius: 8px; font-weight: 700; }
+        .input-genel { width: 100%; padding: 0.75rem; border: 1.5px solid #D1D5DB; border-radius: 10px; margin-bottom: 0.8rem; }
+        .odeme-kutu label { display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem; border: 1.5px solid #E5E7EB; border-radius: 10px; margin-bottom: 0.5rem; font-weight: 600; cursor: pointer; }
+        .iban-bilgi { background: #FEF3C7; padding: 0.8rem; border-radius: 10px; font-size: 0.88rem; margin-bottom: 0.8rem; color: #78350F; display: none; }
+
+        @media (max-width: 850px) {
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="ust-serit">🐝 TÜRKİYE'NİN HER YERİNE GÜVENLİ KARGO | KREDİ KARTINA TAKSİT, HAVALE/EFT VE KAPIDA ÖDEME İMKANI</div>
+
+<header>
+    <a href="#" class="marka">
+        <div class="marka-ikon">🐝</div>
+        <div>
 
