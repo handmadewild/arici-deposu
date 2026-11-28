@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arıcı Deposu | Kovan, Bal ve Tüm Arıcılık Malzemeleri</title>
+    <title>Arıcı Deposu | Tüm Arıcılık Malzemeleri ve Ekipmanları</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         :root {
@@ -31,21 +31,20 @@
         .arama-alani input::placeholder { color: #D1D5DB; }
 
         .nav-butonlar { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
-        .yonetim-btn { background: rgba(255,255,255,0.12); color: #FDE68A; border: 1px solid #F59E0B; padding: 0.55rem 1rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
-        .yonetim-btn:hover { background: var(--altin); color: white; }
+        .ig-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; text-decoration: none; padding: 0.55rem 1rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; }
         .yt-btn { background: #DC2626; color: white; text-decoration: none; padding: 0.55rem 1rem; border-radius: 25px; font-weight: 700; font-size: 0.85rem; }
         .sepet-btn { background: linear-gradient(135deg, #F59E0B, #B45309); color: white; border: none; padding: 0.65rem 1.3rem; border-radius: 25px; font-weight: 800; cursor: pointer; font-size: 0.92rem; }
 
         .hero {
-            background: linear-gradient(to right, rgba(11, 34, 24, 0.92) 35%, rgba(11, 34, 24, 0.45)), url('https://unsplash.com') center/cover no-repeat;
-            padding: 4rem 5%; color: white; border-bottom: 3px solid var(--altin);
+            background: linear-gradient(to right, rgba(11, 34, 24, 0.94) 40%, rgba(20, 54, 39, 0.75));
+            padding: 3.5rem 5%; color: white; border-bottom: 3px solid var(--altin);
         }
         .hero-rozet { display: inline-block; background: rgba(245, 158, 11, 0.2); border: 1px solid var(--parlak-altin); color: var(--parlak-altin); padding: 0.35rem 1rem; border-radius: 30px; font-size: 0.82rem; font-weight: 700; margin-bottom: 1rem; }
-        .hero h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: white; max-width: 720px; }
+        .hero h1 { font-size: 2.3rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: white; max-width: 720px; }
         .hero h1 span { color: var(--parlak-altin); }
         .hero p { font-size: 1.05rem; color: #E5E7EB; max-width: 580px; margin-bottom: 1.8rem; }
-        .hero-istatistik { display: flex; gap: 2rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.5rem; }
-        .stat h3 { font-size: 1.5rem; color: var(--parlak-altin); }
+        .hero-istatistik { display: flex; gap: 2rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.5rem; flex-wrap: wrap; }
+        .stat h3 { font-size: 1.4rem; color: var(--parlak-altin); }
         .stat p { font-size: 0.85rem; color: #A7F3D0; margin: 0; }
 
         .kat-bolum { max-width: 1320px; margin: 2.2rem auto 1rem; padding: 0 5%; }
@@ -54,18 +53,17 @@
         .bolum-baslik p { color: var(--gri); font-size: 0.95rem; }
 
         .kat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 1rem; }
-        .kat-kart { position: relative; height: 120px; border-radius: 16px; overflow: hidden; cursor: pointer; border: 3px solid transparent; box-shadow: 0 6px 15px rgba(0,0,0,0.08); transition: 0.25s; }
-        .kat-kart img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
-        .kat-kart::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11, 34, 24, 0.92), rgba(11, 34, 24, 0.2)); }
-        .kat-kart span { position: absolute; bottom: 10px; left: 12px; right: 12px; color: white; font-weight: 700; font-size: 0.92rem; z-index: 2; }
-        .kat-kart:hover img { transform: scale(1.08); }
-        .kat-kart.aktif { border-color: var(--parlak-altin); transform: translateY(-3px); }
+        .kat-kart { position: relative; height: 110px; border-radius: 16px; overflow: hidden; cursor: pointer; border: 3px solid transparent; box-shadow: 0 6px 15px rgba(0,0,0,0.08); transition: 0.25s; background: linear-gradient(135deg, var(--koyu-yesil), var(--orman)); display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; }
+        .kat-kart .kat-ikon { font-size: 2rem; position: absolute; top: 12px; right: 14px; opacity: 0.85; }
+        .kat-kart span { color: white; font-weight: 700; font-size: 0.95rem; z-index: 2; }
+        .kat-kart:hover { transform: translateY(-3px); border-color: var(--altin); }
+        .kat-kart.aktif { border-color: var(--parlak-altin); transform: translateY(-3px); background: linear-gradient(135deg, #143627, #78350F); }
 
         .urun-grid { max-width: 1320px; margin: 1.5rem auto 4rem; padding: 0 5%; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; }
         .urun-karti { background: white; border-radius: 18px; overflow: hidden; border: 1px solid #E7E5E4; box-shadow: 0 8px 24px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
         .urun-karti:hover { transform: translateY(-6px); border-color: var(--parlak-altin); box-shadow: 0 16px 32px rgba(11, 34, 24, 0.14); }
         
-        .resim-alani { position: relative; height: 220px; overflow: hidden; background: #E5E7EB; }
+        .resim-alani { position: relative; height: 200px; overflow: hidden; background: #F3F4F6; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; }
         .resim-alani img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .urun-karti:hover .resim-alani img { transform: scale(1.07); }
         .kat-rozet { position: absolute; top: 12px; left: 12px; background: rgba(11, 34, 24, 0.9); color: var(--parlak-altin); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
@@ -82,37 +80,32 @@
         .fiyat-beklemede { font-size: 0.88rem; font-weight: 700; color: #92400E; }
 
         .kart-butonlar { padding: 0 1.25rem 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
-        .btn-sepet { background: var(--koyu-yesil); color: white; border: none; padding: 0.8rem; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+        .btn-sepet { background: var(--koyu-yesil); color: white; border: none; padding: 0.8rem; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.88rem; }
         .btn-sepet:hover { background: var(--altin); }
         .btn-sepet:disabled { background: #9CA3AF; cursor: not-allowed; }
-        .btn-kart { background: white; color: var(--koyu-yesil); border: 1.5px solid var(--koyu-yesil); padding: 0.8rem; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+        .btn-kart { background: white; color: var(--koyu-yesil); border: 1.5px solid var(--koyu-yesil); padding: 0.8rem; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.88rem; text-align: center; text-decoration: none; }
         .btn-kart:hover { background: var(--koyu-yesil); color: white; }
 
         .alt-vitrin { background: linear-gradient(135deg, var(--koyu-yesil), var(--orman)); color: white; padding: 3.5rem 5%; text-align: center; border-top: 3px solid var(--altin); }
         .alt-vitrin h2 { font-size: 2rem; font-weight: 800; color: var(--parlak-altin); margin-bottom: 0.8rem; }
+        .alt-vitrin p { color: #D1D5DB; max-width: 600px; margin: 0 auto; }
         .sosyal-grup { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
-        .sosyal-link { padding: 0.9rem 1.8rem; border-radius: 30px; color: white; text-decoration: none; font-weight: 700; font-size: 0.98rem; }
+        .sosyal-link { padding: 0.9rem 1.8rem; border-radius: 30px; color: white; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: 0.2s; }
+        .sosyal-link:hover { transform: translateY(-2px); opacity: 0.92; }
 
-        footer { background: #06140E; color: #9CA3AF; text-align: center; padding: 1.8rem 5%; font-size: 0.88rem; }
-
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 250; justify-content: center; align-items: center; padding: 1rem; }
-        .modal-kutu { background: white; padding: 2rem; border-radius: 20px; width: 100%; max-width: 650px; max-height: 90vh; overflow-y: auto; }
-        .yonetim-satir { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0.6rem; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid #eee; font-size: 0.92rem; }
-        .yonetim-satir input { width: 100%; padding: 0.5rem; border: 1.5px solid #D1D5DB; border-radius: 8px; font-weight: 700; }
-        .input-genel { width: 100%; padding: 0.75rem; border: 1.5px solid #D1D5DB; border-radius: 10px; margin-bottom: 0.8rem; }
-        .odeme-kutu label { display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem; border: 1.5px solid #E5E7EB; border-radius: 10px; margin-bottom: 0.5rem; font-weight: 600; cursor: pointer; }
-        .iban-bilgi { background: #FEF3C7; padding: 0.8rem; border-radius: 10px; font-size: 0.88rem; margin-bottom: 0.8rem; color: #78350F; display: none; }
-
-        @media (max-width: 850px) {
-            .hero h1 { font-size: 2rem; }
-        }
+        /* Sepet Penceresi */
+        .sepet-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; justify-content: flex-end; z-index: 200; }
+        .sepet-modal.acik { display: flex; }
+        .sepet-icerik { background: white; width: 100%; max-width: 420px; height: 100%; padding: 1.5rem; display: flex; flex-direction: column; }
+        .sepet-baslik { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E7E5E4; padding-bottom: 1rem; }
+        .sepet-liste { flex: 1; overflow-y: auto; padding: 1rem 0; }
+        .sepet-satir { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid #F3F4F6; }
+        .adet-btn { width: 28px; height: 28px; border: 1px solid #D1D5DB; background: #F9FAFB; border-radius: 6px; font-weight: 800; cursor: pointer; }
+        .sepet-alt { border-top: 2px solid #E7E5E4; padding-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+        .wp-siparis { background: #16A34A; color: white; border: none; padding: 0.9rem; border-radius: 12px; font-weight: 800; font-size: 0.95rem; cursor: pointer; }
+        .ig-siparis { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); color: white; border: none; padding: 0.9rem; border-radius: 12px; font-weight: 800; font-size: 0.95rem; cursor: pointer; }
     </style>
 </head>
 <body>
 
-<div class="ust-serit">🐝 TÜRKİYE'NİN HER YERİNE GÜVENLİ KARGO | KREDİ KARTINA TAKSİT, HAVALE/EFT VE KAPIDA ÖDEME İMKANI</div>
-
-<header>
-    <a href="#" class="marka">
-        <div class="marka-ikon">🐝</div>
-        <div>
+    <div class="ust-serit">
