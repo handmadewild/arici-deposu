@@ -17,14 +17,14 @@ header{background:var(--yesil);color:#fff;padding:14px 5%;display:flex;justify-c
 .ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff;text-decoration:none;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700}
 .yt{background:#DC2626;color:#fff;text-decoration:none;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700}
 .sepet-btn{background:var(--sari);color:#111;border:none;padding:8px 16px;border-radius:20px;font-weight:800;cursor:pointer;font-size:13px}
-.hero{background:linear-gradient(135deg,var(--yesil),var(--orman));color:#fff;padding:40px 5%;border-bottom:3px solid var(--altin)}
-.hero h1{font-size:28px;margin-bottom:8px}.hero h1 span{color:var(--sari)}.hero p{color:#E5E7EB;max-width:600px}
+.hero{background:linear-gradient(135deg,var(--yesil),var(--orman));color:#fff;padding:36px 5%;border-bottom:3px solid var(--altin)}
+.hero h1{font-size:26px;margin-bottom:8px}.hero h1 span{color:var(--sari)}.hero p{color:#E5E7EB;max-width:600px}
 .kategoriler{max-width:1200px;margin:24px auto 12px;padding:0 5%;display:flex;gap:10px;overflow-x:auto}
 .kat{background:#fff;border:1.5px solid #E7E5E4;padding:10px 18px;border-radius:25px;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
 .kat.aktif,.kat:hover{background:var(--yesil);color:var(--sari);border-color:var(--yesil)}
 .vitrin{max-width:1200px;margin:16px auto 48px;padding:0 5%;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 .kart{background:#fff;border-radius:16px;border:1px solid #E7E5E4;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(0,0,0,.05)}
-.gorsel{height:160px;background:#F3F4F6;display:flex;align-items:center;justify-content:center;font-size:60px;position:relative}
+.gorsel{height:150px;background:#F3F4F6;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative}
 .etiket{position:absolute;top:10px;left:10px;background:var(--yesil);color:var(--sari);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700}
 .icerik{padding:16px}
 .icerik h3{font-size:17px;color:var(--yesil);margin-bottom:6px}
@@ -49,10 +49,10 @@ footer{background:var(--yesil);color:#fff;text-align:center;padding:36px 5%;bord
 <div class="serit">🐝 Arıcı Deposu — Güvenilir Arıcılık Malzemeleri Tedarik Merkezi</div>
 <header>
   <a href="#" class="logo">🍯 ARICI DEPOSU</a>
-  <div class="arama"><input type="text" id="ara" placeholder="Malzeme ara..." oninput="ciz()"></div>
+  <div class="arama"><input type="text" id="ara" placeholder="Malzeme ara..." oninput="filtrele()"></div>
   <div class="butonlar">
-    <a id="ustIg" href="#" target="_blank" class="ig">📸 Instagram</a>
-    <a id="ustYt" href="#" target="_blank" class="yt">▶️ YouTube</a>
+    <a href="https://instagram.com" target="_blank" class="ig">📸 Instagram</a>
+    <a href="https://youtube.com" target="_blank" class="yt">▶️ YouTube</a>
     <button class="sepet-btn" onclick="sepetAc()">🛒 Sepet (<span id="sayac">0</span>)</button>
   </div>
 </header>
@@ -67,61 +67,18 @@ footer{background:var(--yesil);color:#fff;text-align:center;padding:36px 5%;bord
   <button class="kat" onclick="katSec('El Aletleri',this)">Körük & El Aletleri</button>
   <button class="kat" onclick="katSec('Hasat & Bakım',this)">Hasat & Bakım</button>
 </div>
-<div class="vitrin" id="vitrin"></div>
+
+<div class="vitrin" id="vitrin">
+  <div class="kart" data-kat="El Aletleri" data-ad="paslanmaz çelik körük büyük"><div><div class="gorsel"><span class="etiket">El Aletleri</span>💨</div><div class="icerik"><h3>Paslanmaz Çelik Körük (Büyük)</h3><p>Isı korumalı kafesli profesyonel körük.</p><div class="fiyat">650 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Paslanmaz Çelik Körük',650)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
+  <div class="kart" data-kat="Koruyucu Kıyafet" data-ad="tam boy astronot arıcı tulumu"><div><div class="gorsel"><span class="etiket">Koruyucu Kıyafet</span>🧑‍🚀</div><div class="icerik"><h3>Tam Boy Astronot Arıcı Tulumu</h3><p>Hava alan pamuklu kumaş, çıkarılabilir şapkalı.</p><div class="fiyat">950 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Astronot Arıcı Tulumu',950)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
+  <div class="kart" data-kat="Kovan & Çıta" data-ad="langstroth çam arı kovanı"><div><div class="gorsel"><span class="etiket">Kovan & Çıta</span>📦</div><div class="icerik"><h3>Langstroth Çam Arı Kovanı</h3><p>1. sınıf fırınlanmış çam, polen tuzaklı altlık.</p><div class="fiyat">1.850 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Langstroth Çam Kovan',1850)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
+  <div class="kart" data-kat="El Aletleri" data-ad="krom el demiri çerçeve kaldırıcı"><div><div class="gorsel"><span class="etiket">El Aletleri</span>🛠️</div><div class="icerik"><h3>Krom El Demiri</h3><p>Paslanmaz çelik çerçeve kaldırıcı.</p><div class="fiyat">180 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Krom El Demiri',180)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
+  <div class="kart" data-kat="Koruyucu Kıyafet" data-ad="keçi derisi arıcı eldiveni"><div><div class="gorsel"><span class="etiket">Koruyucu Kıyafet</span>🧤</div><div class="icerik"><h3>Keçi Derisi Arıcı Eldiveni</h3><p>Yumuşak deri ve uzun havalandırmalı kolluk.</p><div class="fiyat">320 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Deri Arıcı Eldiveni',320)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
+  <div class="kart" data-kat="Hasat & Bakım" data-ad="3 çerçeveli bal süzme makinesi"><div><div class="gorsel"><span class="etiket">Hasat & Bakım</span>🍯</div><div class="icerik"><h3>3 Çerçeveli Bal Süzme Makinesi</h3><p>304 kalite paslanmaz krom gövde.</p><div class="fiyat">4.500 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Bal Süzme Makinesi',4500)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
+  <div class="kart" data-kat="Kovan & Çıta" data-ad="tel çekilmiş hazır çıta 10 adet"><div><div class="gorsel"><span class="etiket">Kovan & Çıta</span>🪵</div><div class="icerik"><h3>Tel Çekilmiş Hazır Çıta (10 Adet)</h3><p>Krom telli standart kovan çıtası.</p><div class="fiyat">350 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Hazır Kovan Çıtası 10lu',350)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
+  <div class="kart" data-kat="Hasat & Bakım" data-ad="paslanmaz sır alma tarağı"><div><div class="gorsel"><span class="etiket">Hasat & Bakım</span>🍴</div><div class="icerik"><h3>Paslanmaz Sır Alma Tarağı</h3><p>Çelik dişli profesyonel sır tarağı.</p><div class="fiyat">140 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Sır Alma Tarağı',140)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
+</div>
+
 <footer>
   <h2 style="color:var(--sari)">Sosyal Medyada Arıcı Deposu</h2>
   <div class="sosyal">
-    <a id="altIg" href="#" target="_blank" style="background:#dc2743">📸 Instagram Mağazamız</a>
-    <a id="altYt" href="#" target="_blank" style="background:#DC2626">▶️ YouTube Kanalımız</a>
-    <a id="altWp" href="#" target="_blank" style="background:#16A34A">💬 WhatsApp Hattımız</a>
-  </div>
-  <p style="font-size:13px;color:#A7F3D0">© 2026 Arıcı Deposu — Tüm Hakları Saklıdır.</p>
-</footer>
-<div class="modal" id="modal" onclick="if(event.target===this)sepetAc()">
-  <div class="panel">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <h3>🛒 Sipariş Sepetiniz</h3>
-      <button onclick="sepetAc()" style="border:none;background:none;font-size:24px;cursor:pointer">×</button>
-    </div>
-    <div class="liste" id="liste"></div>
-    <div>
-      <div style="display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin-bottom:12px">
-        <span>Toplam:</span><span id="toplam" style="color:#B45309">0 TL</span>
-      </div>
-      <button class="wp-btn" onclick="wpGonder()">💬 WhatsApp ile Sipariş Ver</button>
-      <button class="ig-btn" onclick="igGonder()">📸 Sepeti Kopyala & Instagram'a Git</button>
-    </div>
-  </div>
-</div>
-<script>
-const WP="905000000000";
-const IG="https://instagram.com";
-const YT="https://youtube.com";
-document.getElementById("ustIg").href=IG;document.getElementById("altIg").href=IG;
-document.getElementById("ustYt").href=YT;document.getElementById("altYt").href=YT;
-document.getElementById("altWp").href="https://wa.me"+WP;
-const urunler=[
-  {id:1,ad:"Paslanmaz Çelik Körük (Büyük)",kat:"El Aletleri",fiyat:650,ozet:"Isı korumalı kafesli profesyonel körük.",ikon:"💨"},
-  {id:2,ad:"Tam Boy Astronot Arıcı Tulumu",kat:"Koruyucu Kıyafet",fiyat:950,ozet:"Hava alan pamuklu kumaş, çıkarılabilir şapkalı.",ikon:"🧑‍🚀"},
-  {id:3,ad:"Langstroth Çam Arı Kovanı",kat:"Kovan & Çıta",fiyat:1850,ozet:"1. sınıf fırınlanmış çam, polen tuzaklı altlık.",ikon:"📦"},
-  {id:4,ad:"Krom El Demiri",kat:"El Aletleri",fiyat:180,ozet:"Paslanmaz çelik çerçeve kaldırıcı.",ikon:"🛠️"},
-  {id:5,ad:"Keçi Derisi Arıcı Eldiveni",kat:"Koruyucu Kıyafet",fiyat:320,ozet:"Yumuşak deri ve uzun havalandırmalı kolluk.",ikon:"🧤"},
-  {id:6,ad:"3 Çerçeveli Bal Süzme Makinesi",kat:"Hasat & Bakım",fiyat:4500,ozet:"304 kalite paslanmaz krom gövde.",ikon:"🍯"},
-  {id:7,ad:"Tel Çekilmiş Hazır Çıta (10 Adet)",kat:"Kovan & Çıta",fiyat:350,ozet:"Krom telli standart kovan çıtası.",ikon:"🪵"},
-  {id:8,ad:"Paslanmaz Sır Alma Tarağı",kat:"Hasat & Bakım",fiyat:140,ozet:"Çelik dişli profesyonel sır tarağı.",ikon:"🍴"}
-];
-let kat="Tümü",sepet=[];
-function ciz(){
-  const v=document.getElementById("vitrin"),q=document.getElementById("ara").value.toLowerCase();
-  v.innerHTML="";
-  urunler.filter(u=>(kat==="Tümü"||u.kat===kat)&&(u.ad.toLowerCase().includes(q)||u.ozet.toLowerCase().includes(q))).forEach(u=>{
-    v.innerHTML+=`<div class="kart"><div><div class="gorsel"><span class="etiket">${u.kat}</span>${u.ikon}</div><div class="icerik"><h3>${u.ad}</h3><p>${u.ozet}</p><div class="fiyat">${u.fiyat.toLocaleString('tr-TR')} TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle(${u.id})">+ Sepete Ekle</button><a href="${IG}" target="_blank" class="sor">📸 IG'den Sor</a></div></div>`;
-  });
-}
-function katSec(k,el){kat=k;document.querySelectorAll(".kat").forEach(b=>b.classList.remove("aktif"));el.classList.add("aktif");ciz()}
-function ekle(id){const s=sepet.find(x=>x.id===id);s?s.adet++:sepet.push({...urunler.find(x=>x.id===id),adet:1});sepetCiz()}
-function degis(id,d){const s=sepet.find(x=>x.id===id);if(!s)return;s.adet+=d;if(s.adet<=0)sepet=sepet.filter(x=>x.id!==id);sepetCiz()}
-function sepetCiz(){
-  document.getElementById("sayac").textContent=sepet.reduce((t,s)=>t+s.adet,0);
-  document.getElementById("toplam").textContent=sepet.reduce((t,s)=>t+s.fiyat*s.adet,0).toLocaleString('tr-TR')+" TL";
-  const l=document.getElementById("liste");
