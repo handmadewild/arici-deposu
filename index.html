@@ -40,7 +40,6 @@ header{background:var(--yesil);color:#fff;padding:14px 5%;display:flex;justify-c
 footer{background:var(--yesil);color:#fff;text-align:center;padding:36px 5%;border-top:3px solid var(--altin)}
 .sosyal{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:16px 0}
 .sosyal a{color:#fff;text-decoration:none;padding:10px 20px;border-radius:25px;font-weight:700;font-size:14px}
-
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;justify-content:flex-end;z-index:200}
 .modal.acik{display:flex}
 .panel{background:#fff;width:100%;max-width:400px;height:100%;padding:20px;display:flex;flex-direction:column}
@@ -48,7 +47,6 @@ footer{background:var(--yesil);color:#fff;text-align:center;padding:36px 5%;bord
 .satir{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
 .wp-btn{background:#16A34A;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:800;width:100%;margin-bottom:8px;cursor:pointer}
 .ig-btn{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff;border:none;padding:12px;border-radius:10px;font-weight:800;width:100%;cursor:pointer}
-
 .admin-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
 .admin-modal.acik{display:flex}
 .admin-kutu{background:#fff;width:100%;max-width:850px;max-height:90vh;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
@@ -77,12 +75,10 @@ th,td{border-bottom:1px solid #E5E7EB;padding:8px;text-align:left}
     <button class="sepet-btn" onclick="sepetAc()">🛒 Sepet (<span id="sayac">0</span>)</button>
   </div>
 </header>
-
 <section class="hero">
   <h1>Arılığınız İçin <span>Tüm Arıcılık Malzemeleri</span></h1>
   <p>Kovan, koruyucu kıyafet, körük, el demiri ve hasat ekipmanlarını sepete ekleyin; WhatsApp veya Instagram'dan tek tıkla sipariş verin.</p>
 </section>
-
 <div class="kategoriler">
   <button class="kat aktif" onclick="katSec('Tümü',this)">Tüm Malzemeler</button>
   <button class="kat" onclick="katSec('Kovan & Çıta',this)">Kovan & Çıta</button>
@@ -90,45 +86,4 @@ th,td{border-bottom:1px solid #E5E7EB;padding:8px;text-align:left}
   <button class="kat" onclick="katSec('El Aletleri',this)">Körük & El Aletleri</button>
   <button class="kat" onclick="katSec('Hasat & Bakım',this)">Hasat & Bakım</button>
 </div>
-
 <div class="vitrin" id="vitrin"><p style="grid-column:1/-1;text-align:center;padding:40px;color:#57534E">Malzemeler yükleniyor...</p></div>
-
-<footer>
-  <h2 style="color:var(--sari)">Sosyal Medyada Arıcı Deposu</h2>
-  <div class="sosyal">
-    <a id="altIg" href="https://instagram.com" target="_blank" style="background:#dc2743">📸 Instagram Mağazamız</a>
-    <a id="altYt" href="https://youtube.com" target="_blank" style="background:#DC2626">▶️ YouTube Kanalımız</a>
-    <a id="altWp" href="https://wa.me" target="_blank" style="background:#16A34A">💬 WhatsApp Hattımız</a>
-  </div>
-  <p style="font-size:13px;color:#A7F3D0">© 2026 Arıcı Deposu — Tüm Hakları Saklıdır.</p>
-</footer>
-
-<div class="modal" id="modal" onclick="if(event.target===this)sepetAc()">
-  <div class="panel">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <h3>🛒 Sipariş Sepetiniz</h3>
-      <button onclick="sepetAc()" style="border:none;background:none;font-size:24px;cursor:pointer">×</button>
-    </div>
-    <div class="liste" id="liste"></div>
-    <div>
-      <div style="display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin-bottom:12px">
-        <span>Toplam:</span><span id="toplam" style="color:#B45309">0 TL</span>
-      </div>
-      <button class="wp-btn" onclick="wpGonder()">💬 WhatsApp ile Sipariş Ver</button>
-      <button class="ig-btn" onclick="igGonder()">📸 Sepeti Kopyala & Instagram'a Git</button>
-    </div>
-  </div>
-</div>
-
-<div class="admin-modal" id="adminModal">
-  <div class="admin-kutu">
-    <div class="admin-ust">
-      <h3>⚙️ Arıcı Deposu Yönetim Paneli</h3>
-      <button onclick="document.getElementById('adminModal').classList.remove('acik')" style="background:none;border:none;color:#fff;font-size:24px;cursor:pointer">×</button>
-    </div>
-    <div class="admin-sekmeler">
-      <button class="admin-sekme aktif" onclick="sekmeAc('urunSekme',this)">📦 Ürün & Stok Yönetimi</button>
-      <button class="admin-sekme" onclick="sekmeAc('muhasebeSekme',this)">💰 Kasa & Muhasebe</button>
-      <button class="admin-sekme" onclick="sekmeAc('ayarSekme',this)">🔗 İletişim & Sosyal Medya</button>
-    </div>
-    <div class="admin-govde">
