@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arıcı Deposu | Arıcılık Malzemeleri</title>
+<title>Arıcı Deposu | Arıcılık Malzemeleri ve Ekipmanları</title>
 <style>
 :root{--yesil:#0B2218;--orman:#143627;--altin:#D97706;--sari:#F59E0B;--krem:#FAF8F5;--koyu:#1C1917;--gri:#57534E}
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif}
@@ -11,11 +11,12 @@ body{background:var(--krem);color:var(--koyu);line-height:1.5}
 .serit{background:linear-gradient(90deg,#78350F,var(--altin),#78350F);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:700}
 header{background:var(--yesil);color:#fff;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;border-bottom:2px solid var(--altin);gap:12px;flex-wrap:wrap}
 .logo{text-decoration:none;display:flex;align-items:center;gap:10px;color:var(--sari);font-size:22px;font-weight:800}
-.arama{flex:1;max-width:400px;background:rgba(255,255,255,.12);border:1px solid var(--sari);border-radius:25px;padding:4px 12px}
+.arama{flex:1;max-width:380px;background:rgba(255,255,255,.12);border:1px solid var(--sari);border-radius:25px;padding:4px 12px}
 .arama input{width:100%;background:none;border:none;color:#fff;padding:6px;outline:none;font-size:14px}
-.butonlar{display:flex;gap:8px;align-items:center}
+.butonlar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff;text-decoration:none;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700}
 .yt{background:#DC2626;color:#fff;text-decoration:none;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.yonetim-btn{background:rgba(255,255,255,.15);color:#FDE68A;border:1px solid var(--sari);padding:8px 14px;border-radius:20px;font-size:13px;font-weight:700;cursor:pointer}
 .sepet-btn{background:var(--sari);color:#111;border:none;padding:8px 16px;border-radius:20px;font-weight:800;cursor:pointer;font-size:13px}
 .hero{background:linear-gradient(135deg,var(--yesil),var(--orman));color:#fff;padding:36px 5%;border-bottom:3px solid var(--altin)}
 .hero h1{font-size:26px;margin-bottom:8px}.hero h1 span{color:var(--sari)}.hero p{color:#E5E7EB;max-width:600px}
@@ -24,42 +25,64 @@ header{background:var(--yesil);color:#fff;padding:14px 5%;display:flex;justify-c
 .kat.aktif,.kat:hover{background:var(--yesil);color:var(--sari);border-color:var(--yesil)}
 .vitrin{max-width:1200px;margin:16px auto 48px;padding:0 5%;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 .kart{background:#fff;border-radius:16px;border:1px solid #E7E5E4;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 12px rgba(0,0,0,.05)}
-.gorsel{height:150px;background:#F3F4F6;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative}
+.gorsel{height:170px;background:#F3F4F6;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;overflow:hidden}
+.gorsel img{width:100%;height:100%;object-fit:cover}
 .etiket{position:absolute;top:10px;left:10px;background:var(--yesil);color:var(--sari);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700}
+.stok-etiket{position:absolute;bottom:10px;right:10px;background:#fff;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:800;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .icerik{padding:16px}
 .icerik h3{font-size:17px;color:var(--yesil);margin-bottom:6px}
 .icerik p{font-size:13px;color:var(--gri);margin-bottom:12px}
 .fiyat{font-size:20px;font-weight:800;color:#B45309;background:#FFFBEB;padding:6px 12px;border-radius:8px;border:1px solid #FDE68A;display:inline-block}
 .alt-btn{padding:0 16px 16px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .ekle{background:var(--yesil);color:#fff;border:none;padding:10px;border-radius:10px;font-weight:700;cursor:pointer}
+.ekle:disabled{background:#9CA3AF;cursor:not-allowed}
 .sor{border:1.5px solid var(--yesil);color:var(--yesil);text-decoration:none;padding:10px;border-radius:10px;font-weight:700;text-align:center;font-size:13px}
 footer{background:var(--yesil);color:#fff;text-align:center;padding:36px 5%;border-top:3px solid var(--altin)}
 .sosyal{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:16px 0}
 .sosyal a{color:#fff;text-decoration:none;padding:10px 20px;border-radius:25px;font-weight:700;font-size:14px}
+
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;justify-content:flex-end;z-index:200}
 .modal.acik{display:flex}
-.panel{background:#fff;width:100%;max-width:380px;height:100%;padding:20px;display:flex;flex-direction:column}
+.panel{background:#fff;width:100%;max-width:400px;height:100%;padding:20px;display:flex;flex-direction:column}
 .liste{flex:1;overflow-y:auto;margin:16px 0}
 .satir{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
 .wp-btn{background:#16A34A;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:800;width:100%;margin-bottom:8px;cursor:pointer}
 .ig-btn{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff;border:none;padding:12px;border-radius:10px;font-weight:800;width:100%;cursor:pointer}
+
+.admin-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
+.admin-modal.acik{display:flex}
+.admin-kutu{background:#fff;width:100%;max-width:850px;max-height:90vh;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.admin-ust{background:var(--yesil);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.admin-sekmeler{display:flex;background:#F3F4F6;border-bottom:1px solid #E5E7EB}
+.admin-sekme{flex:1;padding:12px;border:none;background:none;font-weight:700;cursor:pointer}
+.admin-sekme.aktif{background:#fff;color:var(--yesil);border-bottom:3px solid var(--altin)}
+.admin-govde{padding:20px;overflow-y:auto;flex:1}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:16px}
+.form-grid input,.form-grid select{padding:10px;border:1px solid #D1D5DB;border-radius:8px;font-size:14px}
+.kaydet-btn{background:var(--yesil);color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+th,td{border-bottom:1px solid #E5E7EB;padding:8px;text-align:left}
+.sil-btn{background:#DC2626;color:#fff;border:none;padding:4px 8px;border-radius:6px;cursor:pointer;font-size:12px}
 </style>
 </head>
 <body>
 <div class="serit">🐝 Arıcı Deposu — Güvenilir Arıcılık Malzemeleri Tedarik Merkezi</div>
 <header>
   <a href="#" class="logo">🍯 ARICI DEPOSU</a>
-  <div class="arama"><input type="text" id="ara" placeholder="Malzeme ara..." oninput="filtrele()"></div>
+  <div class="arama"><input type="text" id="ara" placeholder="Malzeme ara..." oninput="ciz()"></div>
   <div class="butonlar">
-    <a href="https://instagram.com" target="_blank" class="ig">📸 Instagram</a>
-    <a href="https://youtube.com" target="_blank" class="yt">▶️ YouTube</a>
+    <a id="ustIg" href="https://instagram.com" target="_blank" class="ig">📸 Instagram</a>
+    <a id="ustYt" href="https://youtube.com" target="_blank" class="yt">▶️ YouTube</a>
+    <button class="yonetim-btn" onclick="yonetimAc()">🔐 Yönetim</button>
     <button class="sepet-btn" onclick="sepetAc()">🛒 Sepet (<span id="sayac">0</span>)</button>
   </div>
 </header>
+
 <section class="hero">
   <h1>Arılığınız İçin <span>Tüm Arıcılık Malzemeleri</span></h1>
   <p>Kovan, koruyucu kıyafet, körük, el demiri ve hasat ekipmanlarını sepete ekleyin; WhatsApp veya Instagram'dan tek tıkla sipariş verin.</p>
 </section>
+
 <div class="kategoriler">
   <button class="kat aktif" onclick="katSec('Tümü',this)">Tüm Malzemeler</button>
   <button class="kat" onclick="katSec('Kovan & Çıta',this)">Kovan & Çıta</button>
@@ -68,17 +91,44 @@ footer{background:var(--yesil);color:#fff;text-align:center;padding:36px 5%;bord
   <button class="kat" onclick="katSec('Hasat & Bakım',this)">Hasat & Bakım</button>
 </div>
 
-<div class="vitrin" id="vitrin">
-  <div class="kart" data-kat="El Aletleri" data-ad="paslanmaz çelik körük büyük"><div><div class="gorsel"><span class="etiket">El Aletleri</span>💨</div><div class="icerik"><h3>Paslanmaz Çelik Körük (Büyük)</h3><p>Isı korumalı kafesli profesyonel körük.</p><div class="fiyat">650 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Paslanmaz Çelik Körük',650)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
-  <div class="kart" data-kat="Koruyucu Kıyafet" data-ad="tam boy astronot arıcı tulumu"><div><div class="gorsel"><span class="etiket">Koruyucu Kıyafet</span>🧑‍🚀</div><div class="icerik"><h3>Tam Boy Astronot Arıcı Tulumu</h3><p>Hava alan pamuklu kumaş, çıkarılabilir şapkalı.</p><div class="fiyat">950 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Astronot Arıcı Tulumu',950)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
-  <div class="kart" data-kat="Kovan & Çıta" data-ad="langstroth çam arı kovanı"><div><div class="gorsel"><span class="etiket">Kovan & Çıta</span>📦</div><div class="icerik"><h3>Langstroth Çam Arı Kovanı</h3><p>1. sınıf fırınlanmış çam, polen tuzaklı altlık.</p><div class="fiyat">1.850 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Langstroth Çam Kovan',1850)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
-  <div class="kart" data-kat="El Aletleri" data-ad="krom el demiri çerçeve kaldırıcı"><div><div class="gorsel"><span class="etiket">El Aletleri</span>🛠️</div><div class="icerik"><h3>Krom El Demiri</h3><p>Paslanmaz çelik çerçeve kaldırıcı.</p><div class="fiyat">180 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Krom El Demiri',180)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
-  <div class="kart" data-kat="Koruyucu Kıyafet" data-ad="keçi derisi arıcı eldiveni"><div><div class="gorsel"><span class="etiket">Koruyucu Kıyafet</span>🧤</div><div class="icerik"><h3>Keçi Derisi Arıcı Eldiveni</h3><p>Yumuşak deri ve uzun havalandırmalı kolluk.</p><div class="fiyat">320 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Deri Arıcı Eldiveni',320)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
-  <div class="kart" data-kat="Hasat & Bakım" data-ad="3 çerçeveli bal süzme makinesi"><div><div class="gorsel"><span class="etiket">Hasat & Bakım</span>🍯</div><div class="icerik"><h3>3 Çerçeveli Bal Süzme Makinesi</h3><p>304 kalite paslanmaz krom gövde.</p><div class="fiyat">4.500 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Bal Süzme Makinesi',4500)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
-  <div class="kart" data-kat="Kovan & Çıta" data-ad="tel çekilmiş hazır çıta 10 adet"><div><div class="gorsel"><span class="etiket">Kovan & Çıta</span>🪵</div><div class="icerik"><h3>Tel Çekilmiş Hazır Çıta (10 Adet)</h3><p>Krom telli standart kovan çıtası.</p><div class="fiyat">350 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Hazır Kovan Çıtası 10lu',350)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
-  <div class="kart" data-kat="Hasat & Bakım" data-ad="paslanmaz sır alma tarağı"><div><div class="gorsel"><span class="etiket">Hasat & Bakım</span>🍴</div><div class="icerik"><h3>Paslanmaz Sır Alma Tarağı</h3><p>Çelik dişli profesyonel sır tarağı.</p><div class="fiyat">140 TL</div></div></div><div class="alt-btn"><button class="ekle" onclick="ekle('Sır Alma Tarağı',140)">+ Sepete Ekle</button><a href="https://instagram.com" target="_blank" class="sor">📸 IG'den Sor</a></div></div>
-</div>
+<div class="vitrin" id="vitrin"><p style="grid-column:1/-1;text-align:center;padding:40px;color:#57534E">Malzemeler yükleniyor...</p></div>
 
 <footer>
   <h2 style="color:var(--sari)">Sosyal Medyada Arıcı Deposu</h2>
   <div class="sosyal">
+    <a id="altIg" href="https://instagram.com" target="_blank" style="background:#dc2743">📸 Instagram Mağazamız</a>
+    <a id="altYt" href="https://youtube.com" target="_blank" style="background:#DC2626">▶️ YouTube Kanalımız</a>
+    <a id="altWp" href="https://wa.me" target="_blank" style="background:#16A34A">💬 WhatsApp Hattımız</a>
+  </div>
+  <p style="font-size:13px;color:#A7F3D0">© 2026 Arıcı Deposu — Tüm Hakları Saklıdır.</p>
+</footer>
+
+<div class="modal" id="modal" onclick="if(event.target===this)sepetAc()">
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h3>🛒 Sipariş Sepetiniz</h3>
+      <button onclick="sepetAc()" style="border:none;background:none;font-size:24px;cursor:pointer">×</button>
+    </div>
+    <div class="liste" id="liste"></div>
+    <div>
+      <div style="display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin-bottom:12px">
+        <span>Toplam:</span><span id="toplam" style="color:#B45309">0 TL</span>
+      </div>
+      <button class="wp-btn" onclick="wpGonder()">💬 WhatsApp ile Sipariş Ver</button>
+      <button class="ig-btn" onclick="igGonder()">📸 Sepeti Kopyala & Instagram'a Git</button>
+    </div>
+  </div>
+</div>
+
+<div class="admin-modal" id="adminModal">
+  <div class="admin-kutu">
+    <div class="admin-ust">
+      <h3>⚙️ Arıcı Deposu Yönetim Paneli</h3>
+      <button onclick="document.getElementById('adminModal').classList.remove('acik')" style="background:none;border:none;color:#fff;font-size:24px;cursor:pointer">×</button>
+    </div>
+    <div class="admin-sekmeler">
+      <button class="admin-sekme aktif" onclick="sekmeAc('urunSekme',this)">📦 Ürün & Stok Yönetimi</button>
+      <button class="admin-sekme" onclick="sekmeAc('muhasebeSekme',this)">💰 Kasa & Muhasebe</button>
+      <button class="admin-sekme" onclick="sekmeAc('ayarSekme',this)">🔗 İletişim & Sosyal Medya</button>
+    </div>
+    <div class="admin-govde">
